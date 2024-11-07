@@ -1,1 +1,1 @@
-
+GoVersion: 1.20
