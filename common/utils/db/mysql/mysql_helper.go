@@ -31,7 +31,7 @@ func NewMysqlDB(config *DBModel.DBConfig, log *zap.Logger) *gorm.DB {
 	if log != nil {
 		dbLogger = DBLogger.NewGormLogger(log)
 	} else {
-		dbLogger = DBLogger.NewGormLogger(logger.NewConsoleLogger(0))
+		dbLogger = DBLogger.NewGormLogger(logger.NewConsoleLogger())
 	}
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",

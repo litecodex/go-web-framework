@@ -11,26 +11,34 @@ import (
 )
 
 // 全局静态变量
-var logger *zap.Logger = NewConsoleLogger(1)
+var logger *zap.Logger = NewConsoleLogger()
 
 func Info(ctx *gin.Context, msg string, fields ...zap.Field) {
-	fields = append(fields, TraceId(ctx))
-	logger.Info(msg, fields...)
+	if ctx != nil {
+		fields = append(fields, TraceId(ctx))
+	}
+	logger.WithOptions(zap.AddCallerSkip(1)).Info(msg, fields...)
 }
 
 func Warn(ctx *gin.Context, msg string, fields ...zap.Field) {
-	fields = append(fields, TraceId(ctx))
-	logger.Warn(msg, fields...)
+	if ctx != nil {
+		fields = append(fields, TraceId(ctx))
+	}
+	logger.WithOptions(zap.AddCallerSkip(1)).Warn(msg, fields...)
 }
 
 func Error(ctx *gin.Context, msg string, fields ...zap.Field) {
-	fields = append(fields, TraceId(ctx))
-	logger.Error(msg, fields...)
+	if ctx != nil {
+		fields = append(fields, TraceId(ctx))
+	}
+	logger.WithOptions(zap.AddCallerSkip(1)).Error(msg, fields...)
 }
 
 func Debug(ctx *gin.Context, msg string, fields ...zap.Field) {
-	fields = append(fields, TraceId(ctx))
-	logger.Debug(msg, fields...)
+	if ctx != nil {
+		fields = append(fields, TraceId(ctx))
+	}
+	logger.WithOptions(zap.AddCallerSkip(1)).Debug(msg, fields...)
 }
 
 func SetLogger(log *zap.Logger) {
@@ -45,7 +53,7 @@ func TraceId(ctx *gin.Context) zap.Field {
 	return zap.String("traceId", RequestUtil.GetTraceId(ctx))
 }
 
-func NewConsoleLogger(callerSkip int) *zap.Logger {
+func NewConsoleLogger() *zap.Logger {
 	// 配置日志编码
 	encoderConfig := zap.NewProductionEncoderConfig()
 	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
@@ -58,7 +66,7 @@ func NewConsoleLogger(callerSkip int) *zap.Logger {
 	loggerCores = append(loggerCores, consoleCore(encoderConfig, level)) // 输出到控制台
 	core := zapcore.NewTee(loggerCores...)
 	// 创建Logger
-	return zap.New(core, zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel), zap.AddCallerSkip(callerSkip))
+	return zap.New(core, zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel))
 }
 
 func consoleCore(encoderConfig zapcore.EncoderConfig, level zap.AtomicLevel) zapcore.Core {
