@@ -2,7 +2,7 @@ package i18n
 
 import (
 	"encoding/json"
-	"github.com/litecodex/go-web-framework/web/utils/logger"
+	"github.com/litecodex/go-web-framework/web/logger"
 	"strings"
 
 	"github.com/nicksnyder/go-i18n/v2/i18n"

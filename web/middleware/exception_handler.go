@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/litecodex/go-web-framework/web/exceptions"
+	"github.com/litecodex/go-web-framework/web/logger"
 	WebModel "github.com/litecodex/go-web-framework/web/model/response"
-	"github.com/litecodex/go-web-framework/web/utils/logger"
 	"go.uber.org/zap"
 	"net/http"
 )

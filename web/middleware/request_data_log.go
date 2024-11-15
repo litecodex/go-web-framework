@@ -3,7 +3,7 @@ package middleware
 import (
 	"bytes"
 	"github.com/gin-gonic/gin"
-	LoggerContext "github.com/litecodex/go-web-framework/web/utils/logger"
+	LoggerContext "github.com/litecodex/go-web-framework/web/logger"
 	"go.uber.org/zap"
 	"io"
 	"strings"

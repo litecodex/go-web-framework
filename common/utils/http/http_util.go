@@ -5,7 +5,7 @@ import (
 	"github.com/go-resty/resty/v2"
 	"github.com/goccy/go-json"
 	JSON "github.com/litecodex/go-web-framework/common/utils/json"
-	LoggerContext "github.com/litecodex/go-web-framework/web/utils/logger"
+	LoggerContext "github.com/litecodex/go-web-framework/web/logger"
 	"time"
 )
 

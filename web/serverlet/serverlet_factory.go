@@ -2,9 +2,9 @@ package serverlet
 
 import (
 	"github.com/gin-gonic/gin"
+	LoggerContext "github.com/litecodex/go-web-framework/web/logger"
 	CustomMiddleware "github.com/litecodex/go-web-framework/web/middleware"
 	WebModel "github.com/litecodex/go-web-framework/web/model/response"
-	LoggerContext "github.com/litecodex/go-web-framework/web/utils/logger"
 	"go.uber.org/zap"
 	"net/http"
 )

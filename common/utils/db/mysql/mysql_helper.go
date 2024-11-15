@@ -4,7 +4,7 @@ import (
 	"fmt"
 	DBLogger "github.com/litecodex/go-web-framework/common/utils/db/logger"
 	DBModel "github.com/litecodex/go-web-framework/common/utils/db/model"
-	"github.com/litecodex/go-web-framework/web/utils/logger"
+	"github.com/litecodex/go-web-framework/web/logger"
 	"go.uber.org/zap"
 	mysqlDriver "gorm.io/driver/mysql"
 	"gorm.io/gorm"
