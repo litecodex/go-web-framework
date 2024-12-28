@@ -14,6 +14,9 @@ func MustStringify(data interface{}) string {
 }
 
 func Stringify(data interface{}) (string, error) {
+	if str, isString := data.(string); isString {
+		return str, nil
+	}
 	jsonBytes, err := json.Marshal(data)
 	if err != nil {
 		return "", err
