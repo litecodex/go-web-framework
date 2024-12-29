@@ -19,13 +19,13 @@ const (
 	PBKDF2Iter = 100000 // PBKDF2 迭代次数
 )
 
-// deriveKey 使用 PBKDF2 从密码和盐值派生密钥
-func deriveKey(password string, salt []byte) []byte {
+// DeriveKey 使用 PBKDF2 从密码和盐值派生密钥
+func DeriveKey(password string, salt []byte) []byte {
 	return pbkdf2.Key([]byte(password), salt, PBKDF2Iter, KeySize, sha256.New)
 }
 
-// encryptAES_GCM 加密函数，自动生成盐值和 nonce
-func encryptAES_GCM(password string, plaintext string) (string, error) {
+// EncryptGCM 加密函数，自动生成盐值和 nonce
+func EncryptGCM(password string, plaintext string) (string, error) {
 	// 生成随机盐值
 	salt := make([]byte, SaltSize)
 	if _, err := rand.Read(salt); err != nil {
@@ -33,7 +33,7 @@ func encryptAES_GCM(password string, plaintext string) (string, error) {
 	}
 
 	// 派生密钥
-	key := deriveKey(password, salt)
+	key := DeriveKey(password, salt)
 
 	// 创建 AES 块
 	block, err := aes.NewCipher(key)
@@ -65,8 +65,8 @@ func encryptAES_GCM(password string, plaintext string) (string, error) {
 	return ciphertextBase64, nil
 }
 
-// decryptAES_GCM 解密函数，根据 Base64 密文恢复明文
-func decryptAES_GCM(password string, ciphertextBase64 string) (string, error) {
+// DecryptGCM 解密函数，根据 Base64 密文恢复明文
+func DecryptGCM(password string, ciphertextBase64 string) (string, error) {
 	// Base64 解码
 	combined, err := base64.StdEncoding.DecodeString(ciphertextBase64)
 	if err != nil {
@@ -84,7 +84,7 @@ func decryptAES_GCM(password string, ciphertextBase64 string) (string, error) {
 	ciphertext := combined[SaltSize+NonceSize:]
 
 	// 派生密钥
-	key := deriveKey(password, salt)
+	key := DeriveKey(password, salt)
 
 	// 创建 AES 块
 	block, err := aes.NewCipher(key)

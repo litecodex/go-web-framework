@@ -11,7 +11,7 @@ func TestAES(t *testing.T) {
 	password := "thisis32bitlongpassphraseimusing" // 任意长度密码
 
 	// 加密
-	ciphertext, err := encryptAES_GCM(password, plaintext)
+	ciphertext, err := EncryptGCM(password, plaintext)
 	if err != nil {
 		fmt.Println("加密错误:", err)
 		return
@@ -19,7 +19,7 @@ func TestAES(t *testing.T) {
 	fmt.Println("加密后的密文:", ciphertext)
 
 	// 解密
-	decryptedText, err := decryptAES_GCM(password, ciphertext)
+	decryptedText, err := DecryptGCM(password, ciphertext)
 	if err != nil {
 		fmt.Println("解密错误:", err)
 		return
