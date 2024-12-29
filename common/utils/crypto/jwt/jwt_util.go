@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/litecodex/go-web-framework/common/utils/crypto/rsa"
-	"github.com/litecodex/go-web-framework/web/exceptions"
 	"time"
 )
 
@@ -67,8 +66,8 @@ const HOURS = "hours"
 const MINUTES = "minutes"
 const SECONDS = "seconds"
 
-func (thiz *JwtService) MustCreateToken(payload map[string]interface{}, duration int64, timeUnit string) string {
-	token, err := thiz.CreateToken(payload, duration, timeUnit)
+func (thiz *JwtService) MustCreateToken(payload map[string]interface{}, duration time.Duration) string {
+	token, err := thiz.CreateToken(payload, duration)
 	if err != nil {
 		panic(err)
 	}
@@ -76,21 +75,9 @@ func (thiz *JwtService) MustCreateToken(payload map[string]interface{}, duration
 }
 
 // 创建一个JWT并签名
-func (thiz *JwtService) CreateToken(payload map[string]interface{}, duration int64, timeUnit string) (string, error) {
+func (thiz *JwtService) CreateToken(payload map[string]interface{}, duration time.Duration) (string, error) {
 	// 设置JWT的声明
-	expirationDuration := time.Duration(duration)
-	switch timeUnit {
-	case HOURS:
-		expirationDuration *= time.Hour
-	case MINUTES:
-		expirationDuration *= time.Minute
-	case SECONDS:
-		expirationDuration *= time.Second
-	default:
-		return "", exceptions.OfMessage("invalid timeUnit: must be 'hours', 'minutes', or 'seconds'")
-	}
-
-	expirationTime := time.Now().Add(expirationDuration)
+	expirationTime := time.Now().Add(duration)
 	payload["exp"] = expirationTime.Unix()
 
 	claims := jwt.MapClaims(payload)

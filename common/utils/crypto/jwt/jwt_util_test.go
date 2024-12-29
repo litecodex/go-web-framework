@@ -4,6 +4,7 @@ import (
 	"fmt"
 	JSON "github.com/litecodex/go-web-framework/common/utils/json"
 	"testing"
+	"time"
 )
 
 func TestJwtService_HS256_SIGN(t *testing.T) {
@@ -22,7 +23,7 @@ func TestJwtService_HS256_SIGN(t *testing.T) {
 		"session":   1727154933278,
 		"user_type": 0,
 	}
-	token := jwtService.MustCreateToken(jwtBody, int64(10), HOURS)
+	token := jwtService.MustCreateToken(jwtBody, 10*time.Hour)
 
 	fmt.Println("Generated Token:", token)
 
@@ -45,7 +46,7 @@ func TestJwtService_RSA256_SIGN(t *testing.T) {
 	jwtBody := map[string]interface{}{
 		"username": "haha",
 	}
-	token := jwtService.MustCreateToken(jwtBody, 10, "seconds")
+	token := jwtService.MustCreateToken(jwtBody, 10*time.Second)
 
 	fmt.Println("Generated Token:", token)
 
