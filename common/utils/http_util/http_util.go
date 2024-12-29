@@ -1,10 +1,10 @@
-package http
+package http_util
 
 import (
 	"fmt"
 	"github.com/go-resty/resty/v2"
 	"github.com/goccy/go-json"
-	JSON "github.com/litecodex/go-web-framework/common/utils/json"
+	JSON "github.com/litecodex/go-web-framework/common/utils/jsons"
 	LoggerContext "github.com/litecodex/go-web-framework/web/logger"
 	"time"
 )

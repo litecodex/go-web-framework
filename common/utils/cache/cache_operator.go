@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
-	ObjectUtil "github.com/litecodex/go-web-framework/common/utils/object"
+	ObjectUtil "github.com/litecodex/go-web-framework/common/utils/objects"
 	"time"
 )
 

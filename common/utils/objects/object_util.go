@@ -1,7 +1,7 @@
-package object
+package objects
 
 import (
-	JSON "github.com/litecodex/go-web-framework/common/utils/json"
+	JSON "github.com/litecodex/go-web-framework/common/utils/jsons"
 	"regexp"
 	"strconv"
 	"strings"

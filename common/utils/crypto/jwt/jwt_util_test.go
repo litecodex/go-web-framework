@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"fmt"
-	JSON "github.com/litecodex/go-web-framework/common/utils/json"
+	JSON "github.com/litecodex/go-web-framework/common/utils/jsons"
 	"testing"
 	"time"
 )
