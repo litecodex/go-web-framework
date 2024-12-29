@@ -11,6 +11,7 @@ require (
 	github.com/goccy/go-json v0.10.3
 	github.com/golang-jwt/jwt/v4 v4.5.1
 	github.com/google/uuid v1.6.0
+	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/nicksnyder/go-i18n/v2 v2.4.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/crypto v0.28.0
@@ -34,10 +35,10 @@ require (
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
+	github.com/jonboulle/clockwork v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.7 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
-	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible // indirect
 	github.com/lestrrat-go/strftime v1.1.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
